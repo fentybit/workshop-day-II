@@ -9,7 +9,10 @@ import './index.css';
  */
 const RecipeModalItem = ({ edit, data, index, type, onDelete, ...other }) => {
   const Wrapper = edit ? 'div' : 'li';
-  const text = type === 'instructions' ? 'Instruction' : 'Ingredient';
+  const text =
+    type === 'instructions'
+      ? `Instruction ${index + 1}`
+      : `Ingredient ${index + 1}`;
   return (
     <Wrapper className="RecipeModalItem">
       {edit ? (
@@ -24,7 +27,7 @@ const RecipeModalItem = ({ edit, data, index, type, onDelete, ...other }) => {
           <button
             type="button"
             className="RecipeModal__ingredient-delete"
-            aria-label="trash can icon"
+            aria-label={`Delete ${text}`}
             onClick={() => onDelete(index, type)}
           >
             <Icon type="fa-trash" />
